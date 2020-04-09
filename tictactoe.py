@@ -42,10 +42,14 @@ def getChoices(gameOver,choice,player1):
     text = 'enter choice on board : '     
     while(not gameOver):
         while ((choice not in range(1,10)) or board[choice] != ' '):
-            if player1 :
-                choice = int(input('Player 1 '+text))
-            else :
-                choice = int(input('Player 2 '+text))
+            try:
+                if player1 :
+                    choice = int(input('Player 1 '+text))
+                else :
+                    choice = int(input('Player 2 '+text))
+            except ValueError:
+                print('Please enter a valid number between 1-9.')
+                choice=0
             print('your choice is',choice)
         if(player1):
             updateBoard(choice,board,1)
