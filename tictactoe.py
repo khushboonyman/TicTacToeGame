@@ -1,4 +1,6 @@
- def displayBoard(board):
+from IPython.display import clear_output
+
+def displayBoard(board):
     print(board[1]+'|'+board[2]+'|'+board[3])
     print('-----')
     print(board[4]+'|'+board[5]+'|'+board[6])
@@ -26,13 +28,13 @@ def updateBoard(choice,board,player):
         board[choice]=inp2
     return board
         
-def checkGame(board):
+def checkGame(board,mark):
     for lines in check:
-        if(board[lines[0]]!=' ' and board[lines[0]]==board[lines[1]] and board[lines[2]]==board[lines[1]]):
+        if(board[lines[0]] == board[lines[1]] == board[lines[2]] == mark):
             return True,True
     for i in range(1,10):
         if(board[i]==' '):
-            return False,True
+            return False,False
     return True,False
 
 def getChoices(gameOver,choice,player1):    
@@ -41,16 +43,14 @@ def getChoices(gameOver,choice,player1):
             print('enter your choice')
             choice = int(input())
             print('your choice is',choice)
-            print(choice not in range(1,10))
-            print(board[choice]!=' ')
-        print(' i am updating')
         if(player1):
             updateBoard(choice,board,1)
             player1=False
+            gameOver,gameWon = checkGame(board,inp1)
         else:
             updateBoard(choice,board,2)
             player1=True
-        gameOver,gameWon = checkGame(board)
+            gameOver,gameWon = checkGame(board,inp2)
         displayBoard(board)
         if gameWon:
             print('you won the game!!!')
@@ -78,4 +78,4 @@ while True:
 
     
     
-     
+    
