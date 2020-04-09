@@ -1,5 +1,3 @@
-from IPython.display import clear_output
-
 def displayBoard(board):
     print(board[1]+'|'+board[2]+'|'+board[3])
     print('-----')
@@ -10,15 +8,14 @@ def displayBoard(board):
     
 def askInput(inp1):
     while(inp1!='X' and inp1!='O'):
-        print('Player 1, enter your choice')
-        inp1 = input()
+        inp1 = input('Player 1, enter your choice, only X or O is acceptable : ')
     print('Player 1 is using',inp1)
     if(inp1=='X'):
         inp2='O'
-        print('Player 2 is using','O')
+        print('Player 2 is using O')
     else:
         inp2='X'
-        print('Player 2 is using','X')
+        print('Player 2 is using X')
     return inp1,inp2
 
 def updateBoard(choice,board,player):
@@ -37,11 +34,14 @@ def checkGame(board,mark):
             return False,False
     return True,False
 
-def getChoices(gameOver,choice,player1):    
+def getChoices(gameOver,choice,player1):
+    text = 'enter choice on board : '     
     while(not gameOver):
         while ((choice not in range(1,10)) or board[choice] != ' '):
-            print('enter your choice')
-            choice = int(input())
+            if player1 :
+                choice = int(input('Player 1 '+text))
+            else :
+                choice = int(input('Player 2 '+text))
             print('your choice is',choice)
         if(player1):
             updateBoard(choice,board,1)
@@ -60,8 +60,7 @@ def getChoices(gameOver,choice,player1):
 check=[[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
 
 while True:
-    print('do you want to play game Y')
-    answer = input()
+    answer = input('do you want to play game enter Y for yes, anything else is a No : ')
     board = [' ']*10
     if answer=='Y':
         displayBoard(board)
