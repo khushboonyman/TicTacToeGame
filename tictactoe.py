@@ -1,9 +1,13 @@
+def display(board,index):
+    val = str(index) if board[index]==' ' else (board[index])
+    return val
+
 def displayBoard(board):
-    print(board[1]+'|'+board[2]+'|'+board[3])
+    print(display(board,1)+'|'+display(board,2)+'|'+display(board,3))
     print('-----')
-    print(board[4]+'|'+board[5]+'|'+board[6])
+    print(display(board,4)+'|'+display(board,5)+'|'+display(board,6))
     print('-----')
-    print(board[7]+'|'+board[8]+'|'+board[9])
+    print(display(board,7)+'|'+display(board,8)+'|'+display(board,9))
     
     
 def askInput(inp1):
